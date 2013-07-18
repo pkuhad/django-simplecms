@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs nav-stacked">
+    {% for page in pages %}
+        <li><a href="{%url 'page-detail' page.id%}"><i class="icon-chevron-right"></i> {{page.title}}</a></li>
+    {% endfor %}
+</ul>    

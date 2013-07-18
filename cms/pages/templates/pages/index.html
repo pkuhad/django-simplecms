@@ -1,3 +1,4 @@
+{% load pages_extras %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -74,14 +75,17 @@
                         {% if request.user.is_superuser %}<li><a href="{% url 'page-create' %}"><i class="icon-chevron-right"></i> Create Pages</a></li> {% endif %}
                         <li><a href="#"><i class="icon-chevron-right"></i> Photo Stream</a></li>
                     </ul>
-
+                    {% page_block %}
                 </div>
                 {% endblock %}
 
                 <div class='span8 offset1'>
                 {%block 'working-pane-results' %}
+                    {% if not object_list %}
+                        <h2> Universe is empty. Go ahead and <a href='{%url 'page-create'%}'>create</a> some page </h2>
+                    {% endif %}
                     {% for page in object_list %}
-                        <h3>{{page.title}}</h3>
+                        <h3><a href='{%url 'page-detail' page.id %}'>{{page.title}}</a></h3>
                         <p>{{page.body}}</p>
                         <hr/>
                     {% endfor %}

@@ -4,7 +4,7 @@
 {% block 'page-header-title' %}
     <h3>{{object.title}}</h3>
 
-{% if request.user.is_superuser %}<a href="{% url 'page-create' %}"><i class="icon-chevron-right"></i> Edit </a>{% endif %}
+{% if request.user.is_superuser %}<a href="{% url 'page-update' object.id %}"><i class="icon-chevron-right"></i> Edit </a>{% endif %}
 {% endblock %}
 
 {% block 'main-content' %}

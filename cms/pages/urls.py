@@ -7,7 +7,7 @@ from .decorators import is_superuser
 
 urlpatterns = patterns('cms.pages.views',
     url(r'page/(?P<pk>\d+)/$', PageDetailView.as_view(), name='page-detail'),
-    url(r'page/(?P<pk>\d+)/edit$', PageUpdateView.as_view(), name='page-update'),
+    url(r'page/(?P<pk>\d+)/edit$', is_superuser(PageUpdateView.as_view()), name='page-update'),
     url(r'page/create/$', is_superuser(PageCreateView.as_view()), name='page-create'),
     url(r'^$', IndexView.as_view(), name='page-index'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    
