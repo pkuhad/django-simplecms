@@ -12,4 +12,4 @@ This is a simple application which experiments with Django's Class Based Views
 
 ## License
 
-DashFB is licensed under the MIT License.
+Django-simplecms is licensed under the MIT License.
