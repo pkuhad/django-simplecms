@@ -8,9 +8,8 @@ from django.template.context import RequestContext
 from django.utils.translation import ugettext as _
 
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
-from django.views.generic import TemplateView
-from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import TemplateView, ListView
 
 from .models import Page
 from .forms import CreatePageForm
@@ -27,5 +26,9 @@ class PageDetailView(DetailView):
     model = Page
 
 class PageCreateView(CreateView):
+    form_class = CreatePageForm
+    model = Page
+
+class PageUpdateView(UpdateView):
     form_class = CreatePageForm
     model = Page

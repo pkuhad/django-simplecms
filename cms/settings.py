@@ -72,6 +72,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    "media/",
 )
 
 # List of finder classes that know how to find static files in
@@ -124,6 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'cms.pages',
     'crispy_forms',
+    'easy_thumbnails',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -156,3 +158,22 @@ LOGGING = {
         },
     }
 }
+
+## Custom Settings
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'thumbnail': {'size': (120, 120)},
+    },
+}
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+ "django.contrib.auth.context_processors.auth",
+ "django.core.context_processors.debug",
+ "django.core.context_processors.i18n",
+ "django.core.context_processors.media",
+ "django.core.context_processors.static",
+ "django.core.context_processors.tz",
+ "django.contrib.messages.context_processors.messages",
+ "django.core.context_processors.request",
+)
