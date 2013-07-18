@@ -50,7 +50,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = 'media/'
+MEDIA_ROOT = "/home/pkuhad/Desktop/cms/cms/media/"
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -72,7 +72,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "media/",
+    "/home/pkuhad/Desktop/cms/cms/media",
 )
 
 # List of finder classes that know how to find static files in

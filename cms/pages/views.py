@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 class IndexView(ListView):
     model = Page
     template_name = "pages/index.html"
-    paginate_by = 2
+    paginate_by = 5
 
 class PageDetailView(DetailView):
     model = Page
@@ -32,3 +32,9 @@ class PageCreateView(CreateView):
 class PageUpdateView(UpdateView):
     form_class = CreatePageForm
     model = Page
+
+class PhotostreamView(ListView):
+    template_name = "pages/photostream.html"
+    queryset = Page.objects.all()
+
+

@@ -72,8 +72,8 @@
                 {% block 'working-pane-menu' %}
                 <div class="span3 bs-docs-sidebar">
                     <ul class="nav nav-tabs nav-stacked">
-                        {% if request.user.is_superuser %}<li><a href="{% url 'page-create' %}"><i class="icon-chevron-right"></i> Create Pages</a></li> {% endif %}
-                        <li><a href="#"><i class="icon-chevron-right"></i> Photo Stream</a></li>
+                        {% if request.user.is_superuser %}<li><a href="{% url 'page-create' %}"><i class="icon-chevron-right"></i> Create Page</a></li> {% endif %}
+                        <li><a href="{%url 'photostream' %}"><i class="icon-chevron-right"></i> Photo Stream</a></li>
                     </ul>
                     {% page_block %}
                 </div>
