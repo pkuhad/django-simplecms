@@ -1,0 +1,13 @@
+
+#main-content{
+    margin-top: 60px;
+}  
+
+header.page-heading{
+    margin-top: 40px;
+    box-shadow: 1px 1px 1px gray;
+}    
+
+h3{
+    font-weight: normal !important;
+}    

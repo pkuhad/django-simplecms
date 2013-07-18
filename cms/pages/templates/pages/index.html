@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PagePro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/custom.css" rel="stylesheet">
+    <!-- <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet"> -->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://localhost:8000">Manage Students</a>
+          <div class="nav-collapse collapse">
+            {% block 'nav-main-menu' %}
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+            </ul>
+            {% endblock %}
+          </div><!--/.nav-collapse -->
+          {% block 'nav-right-menu' %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+    
+    {% block 'page-header' %}
+    <header class="page-heading" id="overview">
+        <div class="container">
+            <h3> Something Here </h3>
+        </div>
+    </header>
+    {% endblock %}
+
+    <div id="main-content" class="container">
+
+        {% block 'messages' %}
+            {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endblock %}
+
+      
+        {% block 'main-content' %}
+
+            <div class='row' id='working-pane'>
+                {% block 'working-pane-menu' %}
+                <div class="span3 bs-docs-sidebar">
+                    <ul class="nav nav-tabs nav-stacked">
+                        <li><a href="#"><i class="icon-chevron-right"></i> Add Something</a></li>
+                        <li><a href="#"><i class="icon-chevron-right"></i> Add Something</a></li>
+                    </ul>
+
+                </div>
+                {% endblock %}
+
+                <div class='span8 offset1'>
+                {%block 'working-pane-results' %}
+                    <p>Hello World</p>
+                {%endblock%}
+                </div>
+            </div>
+
+        {% endblock %}
+      
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ STATIC_URL }}js/libs/bootstrap.js"></script>
+
+  </body>
+</html>
+
