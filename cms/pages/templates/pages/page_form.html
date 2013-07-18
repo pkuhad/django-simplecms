@@ -1,1 +1,12 @@
-{{form.as_p}}
+{% extends 'pages/index.html' %}
+
+{% block 'page-header-title' %}
+    <h3>Create a New Page</h3>
+{% endblock %}
+
+
+{% load crispy_forms_tags %}
+
+{% block 'main-content' %}
+    {% crispy form %}
+{% endblock %}    

@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="http://localhost:8000">Manage Students</a>
+          <a class="brand" href="http://localhost:8000">Manage Pages</a>
           <div class="nav-collapse collapse">
             {% block 'nav-main-menu' %}
             <ul class="nav">
@@ -45,7 +45,9 @@
     {% block 'page-header' %}
     <header class="page-heading" id="overview">
         <div class="container">
-            <h3> Something Here </h3>
+            {% block 'page-header-title' %}
+                <h3> Page Stream </h3>
+            {% endblock %}
         </div>
     </header>
     {% endblock %}
@@ -69,8 +71,8 @@
                 {% block 'working-pane-menu' %}
                 <div class="span3 bs-docs-sidebar">
                     <ul class="nav nav-tabs nav-stacked">
-                        <li><a href="#"><i class="icon-chevron-right"></i> Add Something</a></li>
-                        <li><a href="#"><i class="icon-chevron-right"></i> Add Something</a></li>
+                        <li><a href="#"><i class="icon-chevron-right"></i> Create Pages</a></li>
+                        <li><a href="#"><i class="icon-chevron-right"></i> Photo Stream</a></li>
                     </ul>
 
                 </div>

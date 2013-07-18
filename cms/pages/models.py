@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 class Page(models.Model):
     title           = models.CharField( max_length=500, help_text="Page Title" )

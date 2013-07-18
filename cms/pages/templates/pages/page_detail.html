@@ -1,3 +1,14 @@
-{{object.title}}
+{% extends 'pages/index.html' %}
+
+{% block 'page-header-title' %}
+    <h3>{{object.title}}</h3>
+{% endblock %}
+
+{% block 'main-content' %}
 {{object.body}}
+<br/>
+<br/>
+
+<img src='{{object.picture.url}}' />
+{% endblock %}
 
