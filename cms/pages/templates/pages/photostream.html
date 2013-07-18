@@ -6,10 +6,15 @@
 {% endblock %}
 
 {% block 'main-content' %}
+    <div class='row'>
     {% for page in object_list %}
-        <div class='row'>
-            <a href='{%url 'page-detail' page.id %}'> <img src="{{page.picture.url}}" /> </a>
+        <div class='{% cycle 'adf' 'adf' 'row' %}'>
+            <div class='span4'>
+                <a href='{%url 'page-detail' page.id %}'> <img src="{% thumbnail page.picture 240x240 %}" /> </a>
+                <p>{{page.title}}</p>
+            </div>
         </div>
     {% endfor %}
+    </div>
 {% endblock %}
 

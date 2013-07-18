@@ -1,4 +1,5 @@
 {% load pages_extras %}
+{% load thumbnail %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -85,8 +86,15 @@
                         <h2> Universe is empty. Go ahead and <a href='{%url 'page-create'%}'>create</a> some page </h2>
                     {% endif %}
                     {% for page in object_list %}
-                        <h3><a href='{%url 'page-detail' page.id %}'>{{page.title}}</a></h3>
-                        <p>{{page.body}}</p>
+                        <h3><a href='{%url 'page-detail' page.id %}'>{{page.title|escape}}</a></h3>
+                        <div class='row'>
+                            <div class='span6'>
+                                <p>{{page.body|truncatechars:500|escape}}...</p>
+                            </div>
+                            <div class='span2'>
+                                <a href='{%url 'page-detail' page.id %}' class='pull-right'> <img src="{% thumbnail page.picture 120x120 %}" /> </a>
+                            </div>
+                        </div>
                         <hr/>
                     {% endfor %}
                     

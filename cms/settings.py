@@ -177,3 +177,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
  "django.contrib.messages.context_processors.messages",
  "django.core.context_processors.request",
 )
+
+THUMBNAIL_DEBUG = True
+
