@@ -10,6 +10,7 @@ from django.utils.translation import ugettext as _
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic import TemplateView
+from django.views.generic import ListView
 
 from .models import Page
 from .forms import CreatePageForm
@@ -17,8 +18,10 @@ from .forms import CreatePageForm
 logger = logging.getLogger(__name__)
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
+    model = Page
     template_name = "pages/index.html"
+    paginate_by = 2
 
 class PageDetailView(DetailView):
     model = Page
