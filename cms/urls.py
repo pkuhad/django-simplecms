@@ -17,4 +17,7 @@ urlpatterns = patterns('',
     
     # App 'Index'
     url(r"^", include('cms.pages.urls'), name="app-page"),
+    
+    # App 'apiv1'
+    url(r"^apiv1", include('cms.apiv1.urls'), name="app-api"),
 )
