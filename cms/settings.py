@@ -15,7 +15,7 @@ DATABASES = {
         'NAME': 'demo_cms',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': 'helloworld',
+        'PASSWORD': '',
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
@@ -48,9 +48,10 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
+FILE_ROOT = "/server/code/django-simplecms/"
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = "/home/pkuhad/Desktop/cms/cms/media/"
+MEDIA_ROOT = FILE_ROOT + "media"
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -72,7 +73,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/home/pkuhad/Desktop/cms/cms/media",
+    MEDIA_ROOT,
 )
 
 # List of finder classes that know how to find static files in
@@ -182,7 +183,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
  "django.core.context_processors.request",
 )
 
-THUMBNAIL_DEBUG = True
+THUMBNAIL_DEBUG = False
 
 REST_FRAMEWORK = {
     # Use hyperlinked styles by default.

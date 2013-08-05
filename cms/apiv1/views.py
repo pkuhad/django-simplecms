@@ -22,3 +22,27 @@ def page_list(request):
         serializer = PageSerializer(pages)
         return JSONResponse(serializer.data)
 
+@csrf_exempt
+def page_detail(request, pk):
+
+	try:
+		page = Page.objects.get(pk=pk)
+	except Page.DoesNotExist:
+		return HttpResponse(status=404)
+
+	if request.method == 'GET':
+		serializer = PageSerializer(page)
+		return JSONResponse(serializer.data)
+
+	elif request.method == 'PUT':
+		data = JSONParser().parse(request)
+		serializer = PageSerializer(page, data=data)
+		if serializer.is_valid():
+			serializer.save()
+			return JSONResponse(serializer.data)
+		else:
+			return JSONResponse(serializer.errors, status=400)
+
+	elif request.method == 'DELETE':
+		page.delete()
+		return HttpResponse(status=204)
