@@ -1,28 +1,24 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from cms.pages.models import Page
 from cms.apiv1.serializers import PageSerializer
 
-class JSONResponse(HttpResponse):
 
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
-
-@csrf_exempt
-def page_list(request):
+@api_view(['GET'])
+def page_list(request, format=None):
     """List all pages"""
     
     if request.method == "GET":
         pages = Page.objects.all()
-        serializer = PageSerializer(pages)
-        return JSONResponse(serializer.data)
+        serializer = PageSerializer(pages, many=True)
+        return Response(serializer.data)
 
-@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
 def page_detail(request, pk):
 
 	try:
@@ -32,17 +28,16 @@ def page_detail(request, pk):
 
 	if request.method == 'GET':
 		serializer = PageSerializer(page)
-		return JSONResponse(serializer.data)
+		return Response(serializer.data)
 
 	elif request.method == 'PUT':
-		data = JSONParser().parse(request)
-		serializer = PageSerializer(page, data=data)
+		serializer = PageSerializer(page, data=request.DATA)
 		if serializer.is_valid():
 			serializer.save()
-			return JSONResponse(serializer.data)
+			return Response(serializer.data, status=status.HTTP_201_CREATED)
 		else:
-			return JSONResponse(serializer.errors, status=400)
+			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	elif request.method == 'DELETE':
 		page.delete()
-		return HttpResponse(status=204)
+		return Response(status=status.HTTP_204_NO_CONTENT)
