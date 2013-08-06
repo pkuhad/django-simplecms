@@ -1,36 +1,44 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from cms.pages.models import Page
 from cms.apiv1.serializers import PageSerializer
 
 
-@api_view(['GET'])
-def page_list(request, format=None):
+class PageList(APIView):
     """List all pages"""
     
-    if request.method == "GET":
+    def get(self, request, format=None):
         pages = Page.objects.all()
         serializer = PageSerializer(pages, many=True)
         return Response(serializer.data)
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def page_detail(request, pk):
+    def post(self, request, format=None):
+    	serializer = PageSerializer(data=request.DATA)
+    	if serializer.is_valid():
+    		serializer.save()
+    		return Response(serializer.data, status=status.HTTP_201_CREATED)
+    	return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-	try:
-		page = Page.objects.get(pk=pk)
-	except Page.DoesNotExist:
-		return HttpResponse(status=404)
 
-	if request.method == 'GET':
+class PageDetail(APIView):
+	def get_object(self, pk):
+		try:
+			return Page.objects.get(pk=pk)
+		except Page.DoesNotExist:
+			raise Http404
+
+	def get(self, request, pk, format=None):
+		page = self.get_object(pk)
 		serializer = PageSerializer(page)
 		return Response(serializer.data)
 
-	elif request.method == 'PUT':
+	def put(self, request, pk, format=None):
+		page = self.get_object(pk)
 		serializer = PageSerializer(page, data=request.DATA)
 		if serializer.is_valid():
 			serializer.save()
@@ -38,6 +46,7 @@ def page_detail(request, pk):
 		else:
 			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-	elif request.method == 'DELETE':
+	def delete(self, request, pk, format=None):
+		page = self.get_object(pk)
 		page.delete()
 		return Response(status=status.HTTP_204_NO_CONTENT)
