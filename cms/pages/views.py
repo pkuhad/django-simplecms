@@ -29,6 +29,10 @@ class PageCreateView(CreateView):
     form_class = CreatePageForm
     model = Page
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super(PageCreateView, self).form_valid(form)
+
 class PageUpdateView(UpdateView):
     form_class = CreatePageForm
     model = Page
