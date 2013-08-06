@@ -7,7 +7,7 @@ class Page(models.Model):
     body            = models.TextField( help_text="Page Body" )
     picture         = models.ImageField( upload_to="photos/" )
     timestamp       = models.DateTimeField( auto_now_add=True, editable=False )
-    created_by      = models.ForeignKey(User, help_text="Created By", editable=False) 
+    created_by      = models.ForeignKey(User, help_text="Created By", editable=False, related_name='pages') 
 
     def __unicode__(self):
         return self.title

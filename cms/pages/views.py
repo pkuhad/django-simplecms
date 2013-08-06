@@ -40,5 +40,3 @@ class PageUpdateView(UpdateView):
 class PhotostreamView(ListView):
     template_name = "pages/photostream.html"
     queryset = Page.objects.all()
-
-
