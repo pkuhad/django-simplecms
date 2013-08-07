@@ -11,11 +11,20 @@ class PageList(generics.ListCreateAPIView):
     
     queryset = Page.objects.all()
     serializer_class = PageSerializer
+    
+    def create(self, request, *args, **kwargs):
+        super(PageList, self).create(request, *args, **kwargs)
+
+    def pre_save(self, obj):
+        obj.created_by = self.request.user
 
 class PageDetail(generics.RetrieveUpdateDestroyAPIView):
 
-	queryset = Page.objects.all()
-	serializer_class = PageSerializer
+    queryset = Page.objects.all()
+    serializer_class = PageSerializer
+
+    def pre_save(self, obj):
+        obj.created_by = self.request.user
 
 class UserList(generics.ListCreateAPIView):
 
