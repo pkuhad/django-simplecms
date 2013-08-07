@@ -8,8 +8,8 @@ class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
 
-class UserSerializer(serializers.ModelSerializer):
-	pages = serializers.PrimaryKeyRelatedField(many=True)
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+	pages = serializers.HyperlinkedRelatedField(many=True, view_name='api-page-detail')
 
 	class Meta:
 		model = User
